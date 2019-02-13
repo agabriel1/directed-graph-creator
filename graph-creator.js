@@ -548,7 +548,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
       })
       .call(thisGraph.drag);
 //-----------------------------------------------------------------------------------------------------------------------
- newGs.append("circle") //tried changing circle to rect, also tried removing to have it draw a square - no effect
+ newGs.append("rect") //tried changing circle to rect, also tried removing to have it draw a square - no effect
       .attr("r", 150 ) //String(consts.nodeRadius) replaces the 150 value in old code
       .attr("y", 25); //added this line to change the width of the square, no effect
      //{.attr("x", 10)
