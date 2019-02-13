@@ -59,24 +59,24 @@ marker{
 }
 
 /* affects the color of the circle */
-g.conceptG circle{
+g.conceptG rect{
     fill: #F6FBFF;
     stroke: #333;
     stroke-width: 2px;
 }
  
 /*affects the color of the circle when hovering over*/
-g.conceptG:hover circle{
+g.conceptG:hover rect{
     fill: rgb(200, 238, 241);
 }
 
 /* affects the color of the circle when selected */
-g.selected circle{
+g.selected rect{
     fill: rgb(250, 000, 000);
 }
 
 /*affects the color of the circle when hovering over the circle */
-g.selected:hover circle{
+g.selected:hover rect{
     fill: rgb(250, 232, 255);
 }
 
@@ -91,7 +91,7 @@ path.link:hover{
     stroke: rgb(94, 196, 204);
 }
 
-g.connect-node circle{
+g.connect-node rect{
     fill: #BEFFFF;
 }
 
