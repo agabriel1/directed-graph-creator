@@ -13,7 +13,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     var thisGraph = this;
         thisGraph.idct = 0;
 
-    thisGraph.nodes = nodes || []; //set initial node data
+    thisGraph.nodes = nodes || [];
     thisGraph.edges = edges || [];
 
     thisGraph.state = {
@@ -123,7 +123,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
       });
       var blob = new Blob([window.JSON.stringify({"nodes": thisGraph.nodes, "edges": saveEdges})], {type: "text/plain;charset=utf-8"});
       saveAs(blob, "mydag.json");
-    }); 
+    });
 
 
     // handle uploaded data
@@ -547,59 +547,14 @@ document.onload = (function(d3, saveAs, Blob, undefined){
       })
       .call(thisGraph.drag);
 //-----------------------------------------------------------------------------------------------------------------------
-    newGs.append("circle") //tried changing circle to rect, also tried removing to have it draw a square - no effect
-      .attr("r", 150 ); //String(consts.nodeRadius)
-    
-     //{.attr("x", 10)
-     //.attr("y", 10)
-    //.attr("width", 100)
-    //.attr("height", 50)    }
-    
- //[var c = document.getElementById("myCanvas");
-//var ctx = c.getContext("2d");
-//ctx.fillRect(20, 20, 150, 100); ]
-    
-    //{[ referance the canvas element
-    //var canvas=document.getElementById("canvas");
-    //create a canvas context
-   // var ctx=canvas.getContext("2d");
-    //context's fill and stroke styles
-    //ctx.fillStyle="skyblue";
-//ctx.strokeStyle="lightgray";
-//ctx.lineWidth=3;
-    // set up variables to hold the mouse starting X/Y
-// when the user drags the mouse
-//var startX;
-//var startY;
-    // set up a variable to determine whether to  draw a square or a rectangle
-  //var modeName="square"; }]
-    
-   //{{ var svg = d3.select("body")
-	//.append("svg")
-	//.attr("width", 400)
-	//.attr("height", 200);
-	
-//var data = [{x1: 20, x2: 60, y1: 30, y2: 50},
-//{x1: 50, x2: 80, y1: 100, y2: 150},
-//{x1: 200, x2: 400, y1: 10, y2: 100}];
-
-//var rects = svg.selectAll("foo")
-	//.data(data)
-	//.enter()
-	//.append("rect")
-	//.attr("x", d=> d.x1)
-	//.attr("y", d=> d.y1)
-	//.attr("width", d=> d.x2 - d.x1)
-	//.attr("height", d=> d.y2 - d.y1)
-	//.attr("fill", "teal");}}
-	  
-	  //[[
-	  //d3.select("rect")
-   // .transition()
-    //.duration(1000)
-    //.attr("rx",0)
-    //.attr("ry",0);
-	  //]]
+    newGs.append("circle")
+      //.attr("r", 150 ); //String(consts.nodeRadius)
+     .attr("x", 10)
+     .attr("y", 10)
+    .attr("width", 100)
+    .attr("height", 50)    
+ 
+                            
 //------------------------------------------------------------------------------------------------------------------------    
 
     newGs.each(function(d){
@@ -648,18 +603,11 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 
 
   /** MAIN SVG **/
-  var svg = d3.select(settings.appendElSpec).append("svg") //settings.appendElSpec seems to carry the circle info, try changing
-        .attr("width", width) //this line plus one below was old code
-        .attr("height", height)
-  //.attr("rx",100) //these 8 lines had no effect to drawing the square
-    //.attr("ry",100)
-   // .attr("x",100)
-   // .attr("y",100)
-    //.attr("width",100)
-    //.attr("height",100)
-   // .attr("stroke","black")
-   // .attr("fill","white");
+  var svg = d3.select(settings.appendElSpec).append("svg")
+        .attr("width", width)
+        .attr("height", height);
   var graph = new GraphCreator(svg, nodes, edges);
       graph.setIdCt(3);
   graph.updateGraph();
 })(window.d3, window.saveAs, window.Blob);
+
