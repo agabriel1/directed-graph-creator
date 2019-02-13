@@ -640,9 +640,17 @@ var rects = svg.selectAll("foo")
 
 
   /** MAIN SVG **/
-  var svg = d3.select(settings.appendElSpec).append("svg")
-        .attr("width", width)
-        .attr("height", height);
+  var svg = d3.select(settings.appendElSpec).append("svg") //settings.appendElSpec seems to carry the circle info, try changing
+        //.attr("width", width) this line plus one below was old code for
+        //.attr("height", height)
+  .attr("rx",100)
+    .attr("ry",100)
+    .attr("x",100)
+    .attr("y",100)
+    .attr("width",100)
+    .attr("height",100)
+    .attr("stroke","black")
+    .attr("fill","white");
   var graph = new GraphCreator(svg, nodes, edges);
       graph.setIdCt(3);
   graph.updateGraph();
