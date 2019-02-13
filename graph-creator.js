@@ -650,9 +650,17 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 
 
   /** MAIN SVG **/
-  var svg = d3.select(settings.appendElSpec).append("svg")
+  var svg = d3.select(settings.appendElSpec).append("svg")  //settings.appendElSpec seems to carry the circle info, try changing
         .attr("width", width)
         .attr("height", height);
+	//.attr("rx",100) //these 8 lines had no effect to drawing the square
+    //.attr("ry",100)
+   // .attr("x",100)
+   // .attr("y",100)
+    //.attr("width",100)
+    //.attr("height",100)
+   // .attr("stroke","black")
+   // .attr("fill","white");
   var graph = new GraphCreator(svg, nodes, edges);
       graph.setIdCt(3);
   graph.updateGraph();
