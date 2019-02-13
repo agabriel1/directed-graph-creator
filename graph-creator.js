@@ -527,7 +527,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 
     // add new nodes
     var newGs= thisGraph.circles.enter()
-          .append("g");
+          .append("g")
+          .append("w");
 
     newGs.classed(consts.circleGClass, true)
       .attr("transform", function(d){return "translate(" + d.x + "," + d.y + ")";})
