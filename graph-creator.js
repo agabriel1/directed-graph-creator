@@ -547,8 +547,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
       })
       .call(thisGraph.drag);
 //-----------------------------------------------------------------------------------------------------------------------
-    //newGs.append("rect") //tried changing circle to rect
-      //.attr("r", 150 ); //String(consts.nodeRadius)
+    newGs.append("circle") //tried changing circle to rect, also tried removing to have it draw a square - no effect
+      .attr("r", 150 ); //String(consts.nodeRadius)
     
      //{.attr("x", 10)
      //.attr("y", 10)
@@ -594,11 +594,11 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 	//.attr("fill", "teal");}}
 	  
 	  //[[
-	  d3.select("rect")
-    .transition()
-    .duration(1000)
-    .attr("rx",0)
-    .attr("ry",0);
+	  //d3.select("rect")
+   // .transition()
+    //.duration(1000)
+    //.attr("rx",0)
+    //.attr("ry",0);
 	  //]]
 //------------------------------------------------------------------------------------------------------------------------    
 
@@ -649,16 +649,16 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 
   /** MAIN SVG **/
   var svg = d3.select(settings.appendElSpec).append("svg") //settings.appendElSpec seems to carry the circle info, try changing
-        //.attr("width", width) this line plus one below was old code for
-        //.attr("height", height)
-  .attr("rx",100)
-    .attr("ry",100)
-    .attr("x",100)
-    .attr("y",100)
-    .attr("width",100)
-    .attr("height",100)
-    .attr("stroke","black")
-    .attr("fill","white");
+        .attr("width", width) //this line plus one below was old code
+        .attr("height", height)
+  //.attr("rx",100) //these 8 lines had no effect to drawing the square
+    //.attr("ry",100)
+   // .attr("x",100)
+   // .attr("y",100)
+    //.attr("width",100)
+    //.attr("height",100)
+   // .attr("stroke","black")
+   // .attr("fill","white");
   var graph = new GraphCreator(svg, nodes, edges);
       graph.setIdCt(3);
   graph.updateGraph();
