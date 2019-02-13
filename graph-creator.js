@@ -528,7 +528,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     // add new nodes
     var newGs= thisGraph.circles.enter()
           .append("g")
-          .append("w");
+          .append("w"); //adding this line deleted the circle
 
     newGs.classed(consts.circleGClass, true)
       .attr("transform", function(d){return "translate(" + d.x + "," + d.y + ")";})
@@ -550,7 +550,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 //-----------------------------------------------------------------------------------------------------------------------
  newGs.append("circle") //tried changing circle to rect, also tried removing to have it draw a square - no effect
       .attr("r", 150 ) //String(consts.nodeRadius) replaces the 150 value in old code
-      .attr("y", 25);
+      .attr("y", 25); //added this line to change the width of the square, no effect
      //{.attr("x", 10)
      //.attr("y", 10)
     //.attr("width", 100)
