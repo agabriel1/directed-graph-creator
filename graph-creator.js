@@ -547,7 +547,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
       })
       .call(thisGraph.drag);
 //-----------------------------------------------------------------------------------------------------------------------
-    newGs.append("circle")
+    newGs.append("circle") //tried changing circle to rect
       //.attr("r", 150 ); //String(consts.nodeRadius)
     
      //{.attr("x", 10)
