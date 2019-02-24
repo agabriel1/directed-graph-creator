@@ -536,7 +536,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     //var newGs= thisGraph.circles.enter()
     var newGs= thisGraph.rect.enter()//changed the above line from circles to rect
           .append("g")
-          .append("w"); //adding this line deleted the circle
+          //.append("w"); //adding this line deleted the circle
 
    // newGs.classed(consts.circleGClass, true)
 	  newGs.classed(consts.rectGClass, true) //changed the above line to rect
