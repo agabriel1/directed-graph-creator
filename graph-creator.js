@@ -64,7 +64,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 
     // svg nodes and edges
     thisGraph.paths = svgG.append("g").selectAll("g");
-    thisGraph.circles = svgG.append("g").selectAll("g");
+    //thisGraph.circles = svgG.append("g").selectAll("g");
+   thisGraph.rect = svgG.append("g").selectAll("g"); //changed above line from circles to rect
 
     thisGraph.drag = d3.behavior.drag()
           .origin(function(d){
@@ -176,7 +177,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
   GraphCreator.prototype.consts =  {
     selectedClass: "selected",
     connectClass: "connect-node",
-    circleGClass: "conceptG",
+    //circleGClass: "conceptG",
+     rectGClass: "conceptG", //changed above line from circle to rect
     graphClass: "graph",
     activeEditId: "active-editing",
     BACKSPACE_KEY: 8,
@@ -268,7 +270,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
 
   GraphCreator.prototype.removeSelectFromNode = function(){
     var thisGraph = this;
-    thisGraph.circles.filter(function(cd){
+   // thisGraph.circles.filter(function(cd){
+      thisGraph.rect.filter(function(cd){ //changed the above line from circles to rect
       return cd.id === thisGraph.state.selectedNode.id;
     }).classed(thisGraph.consts.selectedClass, false);
     thisGraph.state.selectedNode = null;
@@ -301,7 +304,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
   };
 
   // mousedown on node
-  GraphCreator.prototype.circleMouseDown = function(d3node, d){
+  //GraphCreator.prototype.circleMouseDown = function(d3node, d){
+  GraphCreator.prototype.rectMouseDown = function(d3node, d){ //changed above line from circle to rect
     var thisGraph = this,
         state = thisGraph.state;
     d3.event.stopPropagation();
@@ -356,7 +360,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
   };
 
   // mouseup on nodes
-  GraphCreator.prototype.circleMouseUp = function(d3node, d){
+  //GraphCreator.prototype.circleMouseUp = function(d3node, d){
+  GraphCreator.prototype.rectMouseUp = function(d3node, d){ //changed above line from circle to rect
     var thisGraph = this,
         state = thisGraph.state,
         consts = thisGraph.consts;
@@ -434,7 +439,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
       thisGraph.nodes.push(d);
       thisGraph.updateGraph();
       // make title of text immediently editable
-      var d3txt = thisGraph.changeTextOfNode(thisGraph.circles.filter(function(dval){
+      //var d3txt = thisGraph.changeTextOfNode(thisGraph.circles.filter(function(dval){
+	var d3txt = thisGraph.changeTextOfNode(thisGraph.rect.filter(function(dval){ //changed above line from circles to rect
         return dval.id === d.id;
       }), d),
           txtNode = d3txt.node();
@@ -522,15 +528,18 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     paths.exit().remove();
 
     // update existing nodes
-    thisGraph.circles = thisGraph.circles.data(thisGraph.nodes, function(d){ return d.id;});
-    thisGraph.circles.attr("transform", function(d){return "translate(" + d.x + "," + d.y + ")";});
-
+   // thisGraph.circles = thisGraph.circles.data(thisGraph.nodes, function(d){ return d.id;});
+    thisGraph.rect = thisGraph.rect.data(thisGraph.nodes, function(d){ return d.id;}); //changed above line from circles to rect
+    //thisGraph.circles.attr("transform", function(d){return "translate(" + d.x + "," + d.y + ")";});
+  thisGraph.rect.attr("transform", function(d){return "translate(" + d.x + "," + d.y + ")";}); //changed the above line from circles to rect
     // add new nodes
-    var newGs= thisGraph.circles.enter()
+    //var newGs= thisGraph.circles.enter()
+    var newGs= thisGraph.rect.enter()//changed the above line from circles to rect
           .append("g")
           .append("w"); //adding this line deleted the circle
 
-    newGs.classed(consts.circleGClass, true)
+   // newGs.classed(consts.circleGClass, true)
+	  newGs.classed(consts.rectGClass, true) //changed the above line to rect
       .attr("transform", function(d){return "translate(" + d.x + "," + d.y + ")";})
       .on("mouseover", function(d){
         if (state.shiftNodeDrag){
@@ -541,10 +550,12 @@ document.onload = (function(d3, saveAs, Blob, undefined){
         d3.select(this).classed(consts.connectClass, false);
       })
       .on("mousedown", function(d){
-        thisGraph.circleMouseDown.call(thisGraph, d3.select(this), d);
+       // thisGraph.circleMouseDown.call(thisGraph, d3.select(this), d);
+        thisGraph.rectMouseDown.call(thisGraph, d3.select(this), d); //changed the above line from circle to rect
       })
       .on("mouseup", function(d){
-        thisGraph.circleMouseUp.call(thisGraph, d3.select(this), d);
+        //thisGraph.circleMouseUp.call(thisGraph, d3.select(this), d);
+        thisGraph.rectMouseUp.call(thisGraph, d3.select(this), d); // changed the above line from circle to rect
       })
       .call(thisGraph.drag);
 //-----------------------------------------------------------------------------------------------------------------------
@@ -612,7 +623,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     });
 
     // remove old nodes
-    thisGraph.circles.exit().remove();
+    //thisGraph.circles.exit().remove();
+     thisGraph.rect.exit().remove(); //changed circles to rect
   };
 
   GraphCreator.prototype.zoomed = function(){
