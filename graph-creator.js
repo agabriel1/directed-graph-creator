@@ -229,8 +229,8 @@ document.onload = (function(d3, saveAs, Blob, undefined){
         nwords = words.length;
     var el = gEl.append("text")
           .attr("text-anchor","middle") //changed from middle to right
-          .attr("dx", 300) //added this line 3/3/19 to try to change text box location
-          .attr("dy", 100);//tied changing to .attr("dy", "-" + (nwords-1));  was-.attr("dy", "-" + (nwords-1)*7.5);
+          .attr("dx", 350) //added this line 3/3/19 to try to change text box location
+          .attr("dy", 100);//tied changing to .attr("dy", "-" + (nwords-1));  was: .attr("dy", "-" + (nwords-1)*7.5);
 
     for (var i = 0; i < words.length; i++) {
       var tspan = el.append('tspan').text(words[i]);
