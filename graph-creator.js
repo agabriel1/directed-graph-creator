@@ -327,7 +327,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     d3node.selectAll("text").remove();
     var nodeBCR = htmlEl.getBoundingClientRect(),
         curScale = nodeBCR.width/consts.nodeRadius, //changed devisor from consts.nodeRadius to nothing if bottom line works
-        placePad  =  5*curScale, //changed from 5 times to 2 times
+        placePad  =  2*curScale, //changed from 5 times to 2 times
         useHW = curScale > 1 ? nodeBCR.width*0.71 : consts.nodeRadius*1.42;
     // replace with editableconent text
     var d3txt = thisGraph.svg.selectAll("foreignObject")
