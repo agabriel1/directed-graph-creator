@@ -228,7 +228,7 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     var words = title.split(/\s+/g),
         nwords = words.length;
     var el = gEl.append("text")
-          .attr("text-anchor","middle")
+          .attr("text-anchor","middle") //changed from middle to right
           .attr("dy", "-" + (nwords-1)*7.5);//tied changing to .attr("dy", "-" + (nwords-1));
 
     for (var i = 0; i < words.length; i++) {
